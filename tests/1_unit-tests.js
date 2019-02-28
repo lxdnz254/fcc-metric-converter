@@ -36,7 +36,7 @@ suite('Unit Tests', function(){
     
     test('Fractional Input w/ Decimal', function(done) {
       var input = '2.3/4L';
-      assert.equal(convertHandler.getNum(input), 2.75);
+      assert.equal(convertHandler.getNum(input), 0.575);
       done();
     });
     
@@ -48,7 +48,7 @@ suite('Unit Tests', function(){
     
     test('No Numerical Input', function(done) {
       var input = 'L'
-      assert.equal(convertHandler.getNum(input), 'invalid number');
+      assert.equal(convertHandler.getNum(input), 1);
       done();
     }); 
     

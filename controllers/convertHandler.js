@@ -9,9 +9,24 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    var result;
     
+    var result = input.match(/[^a-zA-Z]+/g);
+    if (result == undefined || result == [] || result == null || result == "") {
+      return 1
+    }
+    if (result[0].includes("/")) { 
+        var resSplit = result[0].split('/');
+      if (resSplit.length > 2) {
+        return "invalid number";
+      } else {
+        return resSplit[0]/resSplit[1]
+      } 
+    } else if(result[0].search(/[\d]+/g) == -1) {
+        return 'invalid number'
+        }
+    console.log(result)
     return result;
+    
   };
   
   this.getUnit = function(input) {
