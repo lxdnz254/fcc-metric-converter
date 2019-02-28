@@ -24,21 +24,28 @@ function ConvertHandler() {
     } else if(result[0].search(/[\d]+/g) == -1) {
         return 'invalid number'
         }
-    console.log(result)
-    return result;
-    
+    return result 
   };
   
   this.getUnit = function(input) {
-    var result;
-    
+    var result = input.match(/[a-zA-Z]+/g);
+    if (result == undefined || result == [] || result == null || result == "") {
+      return 'invalid unit'
+    }
+    result = result[0].toLowerCase();
+    var unitArray =['gal','l','mi','km','lbs','kg'];
+    if (unitArray.indexOf(result) == -1) {
+      return 'invalid unit'
+    }
     return result;
   };
   
   this.getReturnUnit = function(initUnit) {
-    var result;
+    if (initUnit == 'invalid unit') return 'invalid unit';
+    var input = ['gal','l','mi','km','lbs','kg'];
+    var expect = ['l','gal','km','mi','kg','lbs'];
     
-    return result;
+    return expect[input.indexOf(initUnit)];
   };
 
   this.spellOutUnit = function(unit) {
