@@ -7,6 +7,7 @@
 */
 
 function ConvertHandler() {
+  const unitArray = ['gal','l','mi','km','lbs','kg'];
   
   this.getNum = function(input) {
     
@@ -33,7 +34,7 @@ function ConvertHandler() {
       return 'invalid unit'
     }
     result = result[0].toLowerCase();
-    var unitArray =['gal','l','mi','km','lbs','kg'];
+  
     if (unitArray.indexOf(result) == -1) {
       return 'invalid unit'
     }
@@ -42,23 +43,50 @@ function ConvertHandler() {
   
   this.getReturnUnit = function(initUnit) {
     if (initUnit == 'invalid unit') return 'invalid unit';
-    var input = ['gal','l','mi','km','lbs','kg'];
+    
     var expect = ['l','gal','km','mi','kg','lbs'];
     
-    return expect[input.indexOf(initUnit)];
+    return expect[unitArray.indexOf(initUnit)];
   };
 
   this.spellOutUnit = function(unit) {
-    var result;
     
-    return result;
+    var expect = ['gallons','litres','miles','kilometers','pounds','kilograms'];
+    return expect[unitArray.indexOf(unit)];
   };
   
   this.convert = function(initNum, initUnit) {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
+    
     var result;
+    switch (unitArray.indexOf(initUnit)) {
+      case 0:{
+        result = initNum * galToL
+        break;
+      }
+      case 1: {
+        result = initNum / galToL
+        break;
+      }
+      case 2: {
+        result = initNum * miToKm
+        break;
+      }
+      case 3: {
+        result = initNum / miToKm
+        break;
+      }
+      case 4: {
+        result = initNum * lbsToKg
+        break;
+      }
+      case 5: {
+        result = initNum / lbsToKg
+        break;
+      }
+    }
     
     return result;
   };
