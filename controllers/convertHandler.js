@@ -56,6 +56,9 @@ function ConvertHandler() {
   };
   
   this.convert = function(initNum, initUnit) {
+    if (initNum == 'invalid number' && initUnit == 'invalid unit') return 'invalid number and unit'
+    if (initNum == 'invalid number') return 'invalid number'
+    if (initUnit == 'invalid unit') return 'invalid unit'
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
@@ -92,7 +95,8 @@ function ConvertHandler() {
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    var result;
+    var result = initNum + " " + this.spellOutUnit(initUnit) + " converts to " +
+                  returnNum + " " + this.spellOutUnit(returnUnit);
     
     return result;
   };
